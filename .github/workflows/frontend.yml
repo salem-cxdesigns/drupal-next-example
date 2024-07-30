@@ -6,7 +6,7 @@ on:
       - frontend
 
 jobs:
-  build_fronted:
+  build_frontend:
     runs-on: ubuntu-latest
 
     steps:
@@ -20,6 +20,7 @@ jobs:
           docker push ghcr.io/${{ secrets.GH_USER }}/drupal-next-example:latest
 
   deploy_frontend:
+    needs: build_frontend
     runs-on: self-hosted
 
     steps:
