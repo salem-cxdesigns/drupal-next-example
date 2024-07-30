@@ -28,4 +28,5 @@ jobs:
         run: |
           docker login ghcr.io --username ${{ secrets.GH_USER }} --password ${{ secrets.GH_PAT }}
           docker pull ghcr.io/${{ secrets.GH_USER }}/drupal-next-example:latest
+          cd frontend
           docker compose up -d
