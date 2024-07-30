@@ -21,7 +21,7 @@ jobs:
 
   deploy_frontend:
     needs: build_frontend
-    runs-on: self-hosted
+    runs-on: [self-hosted, drupal-next-example-frontend]
 
     steps:
       - uses: actions/checkout@v4
