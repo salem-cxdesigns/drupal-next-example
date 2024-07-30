@@ -18,4 +18,4 @@ jobs:
 
       - name: Deploy the app
         run: |
-          ./drupal/deploy.sh
+          /home/ubuntu/.nvm/versions/node/v20.15.0/bin/pm2 restart ./drupal/deploy.sh --name drupal-next-example
