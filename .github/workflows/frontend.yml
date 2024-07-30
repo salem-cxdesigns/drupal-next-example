@@ -1,0 +1,30 @@
+name: 'Drupal frontend deployment'
+
+on:
+  push:
+    branches:
+      - frontend
+
+jobs:
+  build_fronted:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build and push frontend image
+        run: |
+          cd frontend
+          docker build . -t ghcr.io/${{ secrets.GH_USER }}/drupal-next-example:latest
+          docker login ghcr.io --username ${{ secrets.GH_USER }} --password ${{ secrets.GH_PAT }}
+          docker push ghcr.io/${{ secrets.GH_USER }}/drupal-next-example:latest
+
+  deploy_frontend:
+    runs-on: self-hosted
+
+    steps:
+      - name: Pull frontend image
+        run: |
+          docker login ghcr.io --username ${{ secrets.GH_USER }} --password ${{ secrets.GH_PAT }}
+          docker pull ghcr.io/${{ secrets.GH_USER }}/drupal-next-example:latest
+          docker compose up -d

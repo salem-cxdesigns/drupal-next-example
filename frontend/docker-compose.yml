@@ -1,0 +1,6 @@
+services:
+
+  frontend:
+    image: ghcr.io/salem-cxdesigns/drupal-next-example:latest
+    ports:
+      - 8886:3000
