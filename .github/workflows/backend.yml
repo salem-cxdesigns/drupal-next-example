@@ -1,6 +1,6 @@
-name: "Drupal backend deployment"
+name: 'Drupal backend deployment'
 
-on: 
+on:
   push:
     branches:
       - backend
@@ -10,6 +10,12 @@ jobs:
     runs-on: self-hosted
 
     steps:
-    - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-      
+      - name: Give permission to deploy.sh
+        run: |
+          chmod +x drupal/deploy.sh
+
+      - name: Deploy the app
+        run: |
+          ./drupal/deploy.sh
