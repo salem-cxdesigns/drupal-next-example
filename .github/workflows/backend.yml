@@ -7,7 +7,7 @@ on:
 
 jobs:
   deploy_backend:
-    runs-on: self-hosted
+    runs-on: [self-hosted, drupal-next-example]
 
     steps:
       - uses: actions/checkout@v4
